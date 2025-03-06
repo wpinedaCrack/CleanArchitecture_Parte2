@@ -13,7 +13,7 @@ public abstract class Entity<TEntityId>: IEntity
         Id = id;
     }
     
-    public TEntityId Id {get ; init;}
+    public TEntityId? Id {get ; init;}
 
     public IReadOnlyList<IDomainEvent> GetDomainEvents()
     {

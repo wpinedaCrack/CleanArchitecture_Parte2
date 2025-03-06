@@ -1,4 +1,5 @@
 using CleanArchitecture.Domain.Users;
+using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Infrastructure.Repositories;
 
@@ -8,8 +9,9 @@ internal sealed class UserRepository : Repository<User,UserId>, IUserRepository
     {
     }
 
-    //public Task<User?> GetByIdAsync(UserId id, CancellationToken cancellationToken = default)
-    //{
-    //    throw new NotImplementedException();
-    //}
+    public async Task<User?> GetByEmailAsync(Email email, CancellationToken cancellationToken = default)
+    {
+        return await DbContext.Set<User>()
+        .FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+    }
 }

@@ -15,7 +15,7 @@ internal sealed class VehiculoConfiguration : IEntityTypeConfiguration<Vehiculo>
        builder.HasKey(vehiculo => vehiculo.Id);
 
        builder.Property(vehiculo => vehiculo.Id)
-        .HasConversion(vehiculoId => vehiculoId.Value, value => new VehiculoId(value));//wpineda
+        .HasConversion(vehiculoId => vehiculoId!.Value, value => new VehiculoId(value));//wpineda
 
         builder.OwnsOne(vehiculo => vehiculo.Direccion);
 

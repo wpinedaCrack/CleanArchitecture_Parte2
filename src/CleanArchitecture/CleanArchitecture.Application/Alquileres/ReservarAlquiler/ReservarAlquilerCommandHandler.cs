@@ -65,7 +65,7 @@ internal sealed class ReservarAlquilerCommandHandler :
         {
             var alquiler = Alquiler.Reservar(
                 vehiculo,
-                user.Id,
+                user.Id!,
                 duracion,
                 _dateTimeProvider.currentTime,
                 _precioService
@@ -75,7 +75,7 @@ internal sealed class ReservarAlquilerCommandHandler :
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return alquiler.Id.Value;
+            return alquiler.Id!.Value;
         }
         catch (ConcurrencyException)
         {

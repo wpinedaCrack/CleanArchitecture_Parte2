@@ -1,6 +1,7 @@
 
 using CleanArchitecture.Application.Vehiculos.SearchVehiculos;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.Api.Controllers.Vehiculos;
@@ -17,6 +18,7 @@ public class VehiculosController : ControllerBase
         _sender = sender;
     }
 
+    [Authorize]
     [HttpGet]
     public async Task<IActionResult> SearchVehiculos(
         DateOnly startDate,

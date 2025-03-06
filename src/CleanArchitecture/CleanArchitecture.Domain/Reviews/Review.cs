@@ -29,13 +29,13 @@ public sealed class Review : Entity<ReviewId>
         FechaCreacion = fechaCreacion;
     }
     
-    public VehiculoId VehiculoId {get; private set;}
-    public AlquilerId AlquilerId {get;private set;}
-    public UserId UserId {get;private set;}
+    public VehiculoId? VehiculoId {get; private set;}
+    public AlquilerId? AlquilerId {get;private set;}
+    public UserId? UserId {get;private set;}
 
-    public Rating Rating {get; private set;}
+    public Rating? Rating {get; private set;}
 
-    public Comentario Comentario {get; private set;}   
+    public Comentario? Comentario {get; private set;}   
 
     public DateTime? FechaCreacion {get; private set;}   
 
@@ -54,15 +54,15 @@ public sealed class Review : Entity<ReviewId>
 
         var review = new Review(
             ReviewId.New(),
-            alquiler.VehiculoId,
-            alquiler.Id,
-            alquiler.UserId,
+            alquiler.VehiculoId!,
+            alquiler.Id!,
+            alquiler.UserId!,
             rating,
             comentario,
             fechaCreacion
         );
 
-        review.RaiseDomainEvent(new ReviewCreatedDomainEvent(review.Id));
+        review.RaiseDomainEvent(new ReviewCreatedDomainEvent(review.Id!));
 
         return review;
     }

@@ -15,7 +15,7 @@ internal sealed class AlquilerConfiguration : IEntityTypeConfiguration<Alquiler>
         builder.HasKey(alquiler => alquiler.Id);
 
         builder.Property(alquiler => alquiler.Id)
-            .HasConversion(alquilerId => alquilerId.Value, value => new AlquilerId(value));//wpineda
+            .HasConversion(alquilerId => alquilerId!.Value, value => new AlquilerId(value));//wpineda
 
         builder.OwnsOne(alquiler => alquiler.PrecioPorPeriodo, precioBuilder => 
         {
