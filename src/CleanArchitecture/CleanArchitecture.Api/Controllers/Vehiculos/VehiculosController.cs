@@ -1,5 +1,7 @@
 
 using CleanArchitecture.Application.Vehiculos.SearchVehiculos;
+using CleanArchitecture.Domain.Permissions;
+using CleanArchitecture.Infrastructure.Authentication;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +20,7 @@ public class VehiculosController : ControllerBase
         _sender = sender;
     }
 
-    [Authorize]
+    [HasPermission(PermissionEnum.ReadUser)]
     [HttpGet]
     public async Task<IActionResult> SearchVehiculos(
         DateOnly startDate,
